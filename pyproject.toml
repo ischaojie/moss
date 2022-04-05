@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "moss"
+version = "0.1.0"
+description = ""
+authors = ["ischaojie <zhuzhezhe95@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+fastapi = "^0.75.1"
+aioredis = "^2.0.1"
+uvicorn = "^0.17.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
