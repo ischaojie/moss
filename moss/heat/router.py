@@ -1,21 +1,17 @@
 # -*- coding: utf-8 -*-
 
 from fastapi import APIRouter
+from fastapi.exceptions import HTTPException
 
-from moss.heat.model import get_duolingo_heat
+from moss.heat.model import get_heat
 
 router = APIRouter()
 
-
-@router.get("/")
-def hello():
-    return {"message": "heat"}
+HEAT_KIND = ("github", "duolingo")
 
 
-@router.get("/duolingo/{year}")
-def duolingo(year: int):
-    heats = get_duolingo_heat(year)
-    return heats
-
-
-GOAL_KIND = ("github", "duolingo")
+@router.get("/{app}/{year}")
+def heat(app, year):
+    if app not in HEAT_KIND:
+        raise HTTPException(status_code=400, detail="Invalid app kind")
+    return get_heat(app, year)
